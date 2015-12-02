@@ -9,7 +9,7 @@ fi
 
 # Pull from docker
 echo 'Pulling changes from docker.'
-docker pull arnkari93/tictactoe
+docker pull $1
 
 echo 'Running the new version in docker.'
-docker run -p 9000:8080 -d -e "NODE_ENV=production" arnkari93/tictactoe
+docker run -p 9000:8080 -d -e "NODE_ENV=production" $1
