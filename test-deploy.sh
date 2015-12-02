@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Kill previous docker containers
 dockerContainterId=`docker ps -q`
 if [ $dockerContainterId ]; then
