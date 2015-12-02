@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Push to docker
 docker push $1
 
