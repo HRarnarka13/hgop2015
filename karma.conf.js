@@ -6,6 +6,8 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
+    reporters: ['progress', 'junit'],
+
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
