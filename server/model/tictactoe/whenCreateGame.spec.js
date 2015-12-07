@@ -7,7 +7,7 @@ describe('when initializing game', () => {
         given = [];
         when = {
             id:'1234',
-            comm:'InitalizeGame',
+            command:'InitalizeGame',
             userName:'ArnarKari',
             name:'Tictactoe',
             timeStamp: "2015.12.04T18:35:51"
@@ -28,7 +28,7 @@ describe('when initializing game', () => {
         given = [];
         when = {
             id:'0987',
-            comm:'InitalizeGame',
+            command:'InitalizeGame',
             userName:'MikeCohn',
             name:'Tictactoe',
             timeStamp: "2015.12.04T19:36:51"
