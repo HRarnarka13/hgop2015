@@ -1,35 +1,41 @@
 var _ = require('lodash');
 module.exports = function tictactoeCommandHandler(events) {
+    const gameCreatedEvent = events[0];
+    const handlers = {
+        'InitalizeGame' : (cmd) => {
+            {
+                return [{
+                    id       : cmd.id,
+                    event    : 'GameInitialized',
+                    userName : cmd.userName,
+                    timeStamp: cmd.timeStamp
+                }];
+            }
+        },
+        'JoinGame' : (cmd) => {
+            {
+                if (typeof events === 'undefined' || events.length <= 0) {
+                    return [{
+                        id       : cmd.id,
+                        event    : 'GameDoesNotExist',
+                        userName : cmd.userName,
+                        timeStamp: cmd.timeStamp
+                    }];
+                }
+                return [{
+                    id              : cmd.id,
+                    event           : 'GameJoined',
+                    userName        : cmd.userName,
+                    opponentUserName: gameCreatedEvent.userName,
+                    timeStamp       : cmd.timeStamp
+                }];
+            }
+        }
+    }
+
     return {
         execudeCommand : (command) => {
-            switch (command.command) {
-                case 'InitalizeGame':
-                    return [{
-                        id       : command.id,
-                        event    : 'GameInitialized',
-                        userName : command.userName,
-                        timeStamp: command.timeStamp
-                    }];
-                case 'JoinGame':
-                    console.log(events);
-                    if (typeof events === 'undefined' || events.length <= 0) {
-                        return [{
-                            id       : command.id,
-                            event    : 'GameDoesNotExist',
-                            userName : command.userName,
-                            timeStamp: command.timeStamp
-                        }];
-                    }
-                    return [{
-                        id              : command.id,
-                        event           : 'GameJoined',
-                        userName        : command.userName,
-                        opponentUserName: events[0].userName,
-                        timeStamp       : command.timeStamp
-                    }];
-                default:
-                    throw new Error('No matching command found: ' + command.command);
-            }
+            return handlers[command.command](command)
         }
     }
 }
