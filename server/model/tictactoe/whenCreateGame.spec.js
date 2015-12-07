@@ -4,7 +4,7 @@ describe('when initializing game', () => {
     var given, when, then;
 
     it('should initialize game', () => {
-        given=[];
+        given = [];
         when = {
             id:'1234',
             comm:'InitalizeGame',
@@ -12,7 +12,7 @@ describe('when initializing game', () => {
             name:'Tictactoe',
             timeStamp: "2015.12.04T18:35:51"
         };
-        then=[{
+        then = [{
             id:"1234",
             event:'GameInitialized',
             userName:'ArnarKari',
@@ -22,5 +22,24 @@ describe('when initializing game', () => {
         var event = tictactoeCommandHandler(given).execudeCommand(when);
 
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
+    });
+
+    it('should initialize a different gane', () => {
+        given = [];
+        when = {
+            id:'0987',
+            comm:'InitalizeGame',
+            userName:'MikeCohn',
+            name:'Tictactoe',
+            timeStamp: "2015.12.04T19:36:51"
+        };
+        then = [{
+            id:"0987",
+            event:'GameInitialized',
+            userName:'MikeCohn',
+            timeStamp: "2015.12.04T19:36:51"
+        }];
+        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 });
