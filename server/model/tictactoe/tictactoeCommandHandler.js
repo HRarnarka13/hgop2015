@@ -69,7 +69,6 @@ module.exports = function tictactoeCommandHandler(events) {
                 const row = cmd.move.x;
                 const column = cmd.move.y
                 // console.log('Before:', board);
-
                 if (nextToMove !== cmd.userName || board[row][column] !== '') {
                     return [{
                         id : cmd.id,

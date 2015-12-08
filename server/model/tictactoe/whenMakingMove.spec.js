@@ -127,4 +127,83 @@ describe('when making move', () => {
         var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
+
+    it('should reject illegal move: marking already marked cell', () => {
+        given.push({
+            id       : '333',
+            event    : 'MoveMade',
+            userName : 'ArnarKari',
+            move : {
+                x      : 0,
+                y      : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        });
+
+        when = {
+            id       : '333',
+            command  : 'Move',
+            userName : 'ArnarKari',
+            move : {
+                x : 0,
+                y : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        };
+
+        then = [{
+            id : '333',
+            event : 'IllegalMove',
+            userName : 'ArnarKari',
+            move : {
+                x : 0,
+                y : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        }];
+        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+    });
+
+    it('should make move for the other player', () => {
+        given.push({
+            id       : '333',
+            event    : 'MoveMade',
+            userName : 'ArnarKari',
+            move : {
+                x      : 0,
+                y      : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        });
+
+        when = {
+            id       : '333',
+            command  : 'Move',
+            userName : 'MikeCohn',
+            move : {
+                x : 1,
+                y : 1,
+                symbol : 'o',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        };
+        then = [{
+            id : '333',
+            event : 'MoveMade',
+            userName : 'MikeCohn',
+            move : {
+                x : 1,
+                y : 1,
+                symbol : 'o',
+            },
+            timeStamp : '2015.12.04T19:45:04'
+        }];
+        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+    });
 });
