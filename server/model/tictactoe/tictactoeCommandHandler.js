@@ -1,15 +1,38 @@
+'use strict';
 var _ = require('lodash');
 module.exports = function tictactoeCommandHandler(events) {
     const gameCreatedEvent = events[0];
     const board = [['','',''],['','',''],['','','']]
 
-    _.each(events, (e) => {
-        if (e.event === 'MoveMade') {
-            const row = e.move.x;
-            const column = e.move.y;
-            board[row][column] = e.move.symbol;
+    let nextToMove = '';
+    let player1 = '', player2 = '';
+
+    const eventHandlers = {
+        'MoveMade' : (e) => {
+            {
+                const row = e.move.x;
+                const column = e.move.y;
+                board[row][column] = e.move.symbol;
+                nextToMove = nextToMove === player1 ? player2 : player2;
+            }
+        },
+        'GameInitialized' : (e) => {
+            {
+                player1 = e.userName;
+                nextToMove = player1;
+            }
+        },
+        'GameJoined' : (e) => {
+            {
+                player2 = e.userName;
+            }
         }
-    })
+    }
+
+    // Act on previus events
+    _.each(events, (e) => {
+        eventHandlers[e.event](e);
+    });
 
     const handlers = {
         'InitalizeGame' : (cmd) => {
@@ -45,9 +68,9 @@ module.exports = function tictactoeCommandHandler(events) {
             {
                 const row = cmd.move.x;
                 const column = cmd.move.y
-                console.log('Before:', board);
+                // console.log('Before:', board);
 
-                if (board[row][column] !== '') {
+                if (nextToMove !== cmd.userName || board[row][column] !== '') {
                     return [{
                         id : cmd.id,
                         event : 'IllegalMove',
@@ -58,7 +81,7 @@ module.exports = function tictactoeCommandHandler(events) {
                 }
 
                 board[row][column] = cmd.move.symbol;
-                console.log('After:',board);
+                // console.log('After:',board);
                 return [{
                     id : cmd.id,
                     event : 'MoveMade',
