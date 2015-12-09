@@ -154,4 +154,39 @@ describe('when ending game', () => {
         var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
+
+    it('should win game, cornerwize', () => {
+        when = {
+            id        : '333',
+            command   : 'Move',
+            userName  : 'ArnarKari',
+            move : {
+                x      : 1,
+                y      : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:17'
+        };
+
+        then = [{
+            id       : '333',
+            event    : 'MoveMade',
+            userName : 'ArnarKari',
+            move : {
+                x : 1,
+                y : 1,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:17'
+        },
+        {
+            id : '333',
+            event : 'GameWon',
+            userName : 'ArnarKari',
+            timeStamp : '2015.12.04T19:45:17'
+        }];
+
+        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+    });
 });

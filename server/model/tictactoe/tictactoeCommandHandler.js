@@ -116,22 +116,23 @@ module.exports = function tictactoeCommandHandler(events) {
     }
 
     function gameState() {
+        let winner = null;
         for (var i = 0; i < 3; i++) {
             // Check for winning in columns
             if (board[0][i] !== '' && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
-                return {
-                    winner : board[0][i]
-                };
+                winner = board[0][i];
             }
             // Check for winning in rows
             if (board[i][0] !== '' && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
-                return {
-                    winner : board[i][0]
-                };
+                winner = board[i][0];
             }
         }
+        // Check for winning cornerwize
+        if (board[0][0] !== '' && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+            winner = board[0][0];
+        }
         return {
-            winner : null
+            winner : winner
         };
     }
 
