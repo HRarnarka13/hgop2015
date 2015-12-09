@@ -33,7 +33,7 @@ describe('when ending game', () => {
             event    : 'MoveMade',
             userName : 'MikeCohn',
             move : {
-                x : 1,
+                x : 0,
                 y : 1,
                 symbol : 'o',
             },
@@ -44,7 +44,29 @@ describe('when ending game', () => {
             event    : 'MoveMade',
             userName : 'ArnarKari',
             move : {
-                x : 1,
+                x : 2,
+                y : 2,
+                symbol : 'x',
+            },
+            timeStamp : '2015.12.04T19:45:08'
+        },
+        {
+            id       : '333',
+            event    : 'MoveMade',
+            userName : 'MikeCohn',
+            move : {
+                x : 2,
+                y : 0,
+                symbol : 'o',
+            },
+            timeStamp : '2015.12.04T19:45:10'
+        },
+        {
+            id       : '333',
+            event    : 'MoveMade',
+            userName : 'ArnarKari',
+            move : {
+                x : 2,
                 y : 0,
                 symbol : 'x',
             },
@@ -69,7 +91,7 @@ describe('when ending game', () => {
             command   : 'Move',
             userName  : 'ArnarKari',
             move : {
-                x      : 2,
+                x      : 1,
                 y      : 0,
                 symbol : 'x',
             },
@@ -81,7 +103,7 @@ describe('when ending game', () => {
             event    : 'MoveMade',
             userName : 'ArnarKari',
             move : {
-                x : 2,
+                x : 1,
                 y : 0,
                 symbol : 'x',
             },
