@@ -69,10 +69,7 @@ module.exports = function tictactoeCommandHandler(events) {
             {
                 const row = cmd.move.x;
                 const column = cmd.move.y;
-                console.log('Before:', board);
                 if (nextToMove !== cmd.userName || board[row][column] !== '') {
-                    console.log('nextToMove',nextToMove);
-                    console.log('cmd.userName',cmd.userName);
                     return [{
                         id : cmd.id,
                         event : 'IllegalMove',
@@ -84,7 +81,6 @@ module.exports = function tictactoeCommandHandler(events) {
 
                 board[row][column] = cmd.move.symbol;
                 nextToMove = nextToMove === player1 ? player2 : player2;
-                console.log('After:',board);
 
                 // Check if first row contains the same symbol
                 var state = gameState();
