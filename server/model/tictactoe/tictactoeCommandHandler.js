@@ -13,7 +13,8 @@ module.exports = function tictactoeCommandHandler(events) {
                 const row = e.move.x;
                 const column = e.move.y;
                 board[row][column] = e.move.symbol;
-                nextToMove = nextToMove === player1 ? player2 : player2;
+                nextToMove = nextToMove === player1 ? player2 : player1;
+                console.log('e nextToMove', nextToMove);
             }
         },
         'GameInitialized' : (e) => {
@@ -67,9 +68,11 @@ module.exports = function tictactoeCommandHandler(events) {
         'Move' : (cmd) => {
             {
                 const row = cmd.move.x;
-                const column = cmd.move.y
-                // console.log('Before:', board);
+                const column = cmd.move.y;
+                console.log('Before:', board);
                 if (nextToMove !== cmd.userName || board[row][column] !== '') {
+                    console.log('nextToMove',nextToMove);
+                    console.log('cmd.userName',cmd.userName);
                     return [{
                         id : cmd.id,
                         event : 'IllegalMove',
@@ -80,7 +83,26 @@ module.exports = function tictactoeCommandHandler(events) {
                 }
 
                 board[row][column] = cmd.move.symbol;
-                // console.log('After:',board);
+                nextToMove = nextToMove === player1 ? player2 : player2;
+                console.log('After:',board);
+
+                // Check if first row contains the same symbol
+                if (board[0][0] !== '' && board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
+                    return [{
+                        id : cmd.id,
+                        event : 'MoveMade',
+                        userName : cmd.userName,
+                        move : cmd.move,
+                        timeStamp : cmd.timeStamp
+                    },
+                    {
+                        id : cmd.id,
+                        event : 'GameWon',
+                        userName : cmd.userName,
+                        timeStamp : cmd.timeStamp
+                    }]
+                }
+
                 return [{
                     id : cmd.id,
                     event : 'MoveMade',
