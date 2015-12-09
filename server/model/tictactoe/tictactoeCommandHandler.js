@@ -88,43 +88,31 @@ module.exports = function tictactoeCommandHandler(events) {
 
                 // Check if first row contains the same symbol
                 var state = gameState();
-                if ( state.winner !== null ) {
-                    console.log('Winner',state.winner);
-                    return [{
-                        id : cmd.id,
-                        event : 'MoveMade',
-                        userName : cmd.userName,
-                        move : cmd.move,
-                        timeStamp : cmd.timeStamp
-                    },
-                    {
-                        id : cmd.id,
-                        event : 'GameWon',
-                        userName : cmd.userName,
-                        timeStamp : cmd.timeStamp
-                    }];
-                } else if ( state.winner === null && state.isBoardFull === true ) {
-                    return [{
-                        id : cmd.id,
-                        event : 'MoveMade',
-                        userName : cmd.userName,
-                        move : cmd.move,
-                        timeStamp : cmd.timeStamp
-                    },
-                    {
-                        id : cmd.id,
-                        event : 'GameDraw',
-                        timeStamp : cmd.timeStamp
-                    }];
-                }
-
-                return [{
+                var returnEvents = [{
                     id : cmd.id,
                     event : 'MoveMade',
                     userName : cmd.userName,
                     move : cmd.move,
                     timeStamp : cmd.timeStamp
-                }]
+                }];
+
+                if ( state.winner !== null ) {
+                    // console.log('Winner',state.winner);
+                    returnEvents.push({
+                        id : cmd.id,
+                        event : 'GameWon',
+                        userName : cmd.userName,
+                        timeStamp : cmd.timeStamp
+                    });
+                } else if ( state.winner === null && state.isBoardFull === true ) {
+                    returnEvents.push({
+                        id : cmd.id,
+                        event : 'GameDraw',
+                        timeStamp : cmd.timeStamp
+                    });
+                }
+
+                return returnEvents;
             }
         }
     }
@@ -151,7 +139,7 @@ module.exports = function tictactoeCommandHandler(events) {
             winner = board[2][0];
         }
 
-        // Check if board is not full 
+        // Check if board is not full
         for (var row = 0; row < 3; row++) {
             for (var col = 0; col < 3; col++) {
                 if (board[row][col] === '') {
