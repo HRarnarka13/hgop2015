@@ -87,7 +87,8 @@ module.exports = function tictactoeCommandHandler(events) {
                 console.log('After:',board);
 
                 // Check if first row contains the same symbol
-                if (board[0][0] !== '' && board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
+                if ( (board[0][0] !== '' && board[0][0] === board[1][0] && board[1][0] === board[2][0]) ||
+                     (board[2][0] !== '' && board[2][0] === board[2][1] && board[2][1] === board[2][2])) {
                     return [{
                         id : cmd.id,
                         event : 'MoveMade',
