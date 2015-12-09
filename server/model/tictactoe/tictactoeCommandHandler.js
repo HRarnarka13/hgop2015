@@ -87,8 +87,8 @@ module.exports = function tictactoeCommandHandler(events) {
                 console.log('After:',board);
 
                 // Check if first row contains the same symbol
-                if ( (board[0][0] !== '' && board[0][0] === board[1][0] && board[1][0] === board[2][0]) ||
-                     (board[2][0] !== '' && board[2][0] === board[2][1] && board[2][1] === board[2][2])) {
+                if ( gameState().winner !== null ) {
+                    console.log('Winner',gameState().winner);
                     return [{
                         id : cmd.id,
                         event : 'MoveMade',
@@ -113,6 +113,26 @@ module.exports = function tictactoeCommandHandler(events) {
                 }]
             }
         }
+    }
+
+    function gameState() {
+        for (var i = 0; i < 3; i++) {
+            // Check for winning in columns
+            if (board[0][i] !== '' && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                return {
+                    winner : board[0][i]
+                };
+            }
+            // Check for winning in rows
+            if (board[i][0] !== '' && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                return {
+                    winner : board[i][0]
+                };
+            }
+        }
+        return {
+            winner : null
+        };
     }
 
     return {
