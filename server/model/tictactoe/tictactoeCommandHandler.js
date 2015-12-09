@@ -87,8 +87,9 @@ module.exports = function tictactoeCommandHandler(events) {
                 console.log('After:',board);
 
                 // Check if first row contains the same symbol
-                if ( gameState().winner !== null ) {
-                    console.log('Winner',gameState().winner);
+                var state = gameState();
+                if ( state.winner !== null ) {
+                    console.log('Winner',state.winner);
                     return [{
                         id : cmd.id,
                         event : 'MoveMade',
@@ -101,7 +102,20 @@ module.exports = function tictactoeCommandHandler(events) {
                         event : 'GameWon',
                         userName : cmd.userName,
                         timeStamp : cmd.timeStamp
-                    }]
+                    }];
+                } else if ( state.winner === null && state.isBoardFull === true ) {
+                    return [{
+                        id : cmd.id,
+                        event : 'MoveMade',
+                        userName : cmd.userName,
+                        move : cmd.move,
+                        timeStamp : cmd.timeStamp
+                    },
+                    {
+                        id : cmd.id,
+                        event : 'GameDraw',
+                        timeStamp : cmd.timeStamp
+                    }];
                 }
 
                 return [{
@@ -136,8 +150,22 @@ module.exports = function tictactoeCommandHandler(events) {
         if (board[2][0] !== '' && board[2][0] === board[1][1] && board[1][1] === board[0][2]) {
             winner = board[2][0];
         }
+
+        // Check if board is not full 
+        for (var row = 0; row < 3; row++) {
+            for (var col = 0; col < 3; col++) {
+                if (board[row][col] === '') {
+                    return {
+                        winner: winner,
+                        isBoardFull : false,
+                    };
+                }
+            }
+        }
+
         return {
-            winner : winner
+            winner : winner,
+            isBoardFull : true
         };
     }
 
