@@ -127,9 +127,14 @@ module.exports = function tictactoeCommandHandler(events) {
                 winner = board[i][0];
             }
         }
-        // Check for winning cornerwize
+        // Check for winning cornerwize '\'
         if (board[0][0] !== '' && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
             winner = board[0][0];
+        }
+
+        // Check for winning cornerwize '/'
+        if (board[2][0] !== '' && board[2][0] === board[1][1] && board[1][1] === board[0][2]) {
+            winner = board[2][0];
         }
         return {
             winner : winner
