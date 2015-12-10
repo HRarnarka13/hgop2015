@@ -42,10 +42,49 @@ describe('tictactoe game context', function() {
         var events;
         boundedContext.handleCommand(emptyCommand).then(function(ev){
             events = ev;
-            should(executedCommand.gameId).be.exactly("111");
+            should(executedCommand.gameId).be.exactly("11");
             should(calledWithEventStoreId).be.exactly("111");
             should(events.length).be.exactly(0);
             should(storedEvents).be.exactly(events);
+            done();
+        });
+    });
+
+    it('should route command to instantiated tictactoe game with event stream from store and return generated events, ' +
+    'using mock style tests.',function(done){
+
+        var jm = require('jsmockito').JsMockito;
+        jm.Integration.importTo(global);
+        /* global spy,when */
+
+        var mockStore = spy({
+            loadEvents : function(){
+                return resolvedPromise([]);
+            },
+            storeEvents : function(events){
+                return resolvedPromise(events);
+            }
+        });
+
+        var mockTickTackToe = spy({
+            executeCommand : function(){
+                return resolvedPromise([]);
+            }
+        });
+
+        var commandHandlers =function(){
+            return mockTickTackToe
+        };
+        var boundedContext = require('./tictactoeBoundedContext')(mockStore, commandHandlers);
+
+        var emptyCommand = {
+            gameId: "22"
+        };
+
+        boundedContext.handleCommand(emptyCommand).then(function(){
+            jm.verify(mockStore).loadEvents('22');
+            jm.verify(mockStore).storeEvents('22');
+            jm.verify(mockTickTackToe).executeCommand(emptyCommand);
             done();
         });
     });
