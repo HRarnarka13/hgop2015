@@ -7,19 +7,22 @@ describe('when initializing game', () => {
         given = [];
         when = {
             id       : '1234',
-            command  : 'InitalizeGame',
+            gameId   : '1',
+            command  : 'CreateGame',
             userName : 'ArnarKari',
             name     : 'Tictactoe',
             timeStamp: '2015.12.04T18:35:51'
         };
         then = [{
             id       : '1234',
-            event    : 'GameInitialized',
+            gameId   : '1',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
+            name     : 'Tictactoe',
             timeStamp: '2015.12.04T18:35:51'
         }];
 
-        var event = tictactoeCommandHandler(given).execudeCommand(when);
+        var event = tictactoeCommandHandler(given).executeCommand(when);
 
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
     });
@@ -28,18 +31,21 @@ describe('when initializing game', () => {
         given = [];
         when = {
             id       : '0987',
-            command  : 'InitalizeGame',
+            gameId   : '1',
+            command  : 'CreateGame',
             userName : 'MikeCohn',
             name     : 'Tictactoe',
             timeStamp: "2015.12.04T19:36:51"
         };
         then = [{
             id       : '0987',
-            event    : 'GameInitialized',
+            gameId   : '1',
+            event    : 'GameCreated',
             userName : 'MikeCohn',
+            name     : 'Tictactoe',
             timeStamp: '2015.12.04T19:36:51'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 });

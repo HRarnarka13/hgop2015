@@ -6,7 +6,7 @@ describe('when making move', () => {
     beforeEach(() => {
         given = [{
             id       : '333',
-            event    : 'GameInitialized',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T19:44:51'
         },
@@ -44,7 +44,7 @@ describe('when making move', () => {
             timeStamp : '2015.12.04T19:45:04'
         }];
 
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -84,7 +84,7 @@ describe('when making move', () => {
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -124,7 +124,7 @@ describe('when making move', () => {
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -164,7 +164,7 @@ describe('when making move', () => {
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -203,7 +203,7 @@ describe('when making move', () => {
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 });

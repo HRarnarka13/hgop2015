@@ -6,12 +6,14 @@ describe('when joining game', () => {
     it('should join game', () => {
         given = [{
             id       : '111',
-            event    : 'GameInitialized',
+            gameId   : 1,
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T18:35:51'
         }];
         when = {
             id       : '111',
+            gameId   : 1,
             command  : 'JoinGame',
             userName : 'MikeCohn',
             name     : 'Tictactoe',
@@ -19,13 +21,14 @@ describe('when joining game', () => {
         };
         then = [{
             id              : '111',
+            gameId          : 1,
             event           : 'GameJoined',
             userName        : 'MikeCohn',
             opponentUserName: 'ArnarKari',
             timeStamp       : '2015.12.04T18:36:01'
         }];
 
-        var event = tictactoeCommandHandler(given).execudeCommand(when);
+        var event = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
     });
 
@@ -33,6 +36,7 @@ describe('when joining game', () => {
         given = [];
         when = {
             id       : '222',
+            gameId   : 1,
             command  : 'JoinGame',
             userName : 'CohnMike',
             name     : 'Tictactoe',
@@ -45,7 +49,7 @@ describe('when joining game', () => {
             timeStamp: '2015.12.04T18:40:07'
         }];
 
-        var event = tictactoeCommandHandler(given).execudeCommand(when);
+        var event = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
     })
 });

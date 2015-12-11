@@ -6,7 +6,7 @@ describe('when ending game', () => {
     beforeEach(() => {
         given = [{
             id       : '333',
-            event    : 'GameInitialized',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T19:44:51'
         },
@@ -116,7 +116,7 @@ describe('when ending game', () => {
             timeStamp : '2015.12.04T19:45:17'
         }];
 
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -151,7 +151,7 @@ describe('when ending game', () => {
             timeStamp : '2015.12.04T19:45:17'
         }];
 
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -186,7 +186,7 @@ describe('when ending game', () => {
             timeStamp : '2015.12.04T19:45:17'
         }];
 
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -194,7 +194,7 @@ describe('when ending game', () => {
         // override the given state
         given = [{
             id       : '333',
-            event    : 'GameInitialized',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T19:44:51'
         },
@@ -301,7 +301,7 @@ describe('when ending game', () => {
             timeStamp : '2015.12.04T19:45:17'
         }];
 
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 });

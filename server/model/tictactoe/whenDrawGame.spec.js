@@ -9,12 +9,14 @@ describe('when ending game', () => {
         // o x o
         given = [{
             id       : '333',
-            event    : 'GameInitialized',
+            gameId   : '1',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T19:44:51'
         },
         {
             id              : '333',
+            gameId          : '1',
             event           : 'GameJoined',
             userName        : 'MikeCohn',
             opponentUserName: 'ArnarKari',
@@ -136,7 +138,7 @@ describe('when ending game', () => {
             event : 'GameDraw',
             timeStamp : '2015.12.04T19:45:21'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
@@ -146,12 +148,14 @@ describe('when ending game', () => {
         // o x
         given = [{
             id       : '333',
-            event    : 'GameInitialized',
+            gameId   : '1',
+            event    : 'GameCreated',
             userName : 'ArnarKari',
             timeStamp: '2015.12.04T19:44:51'
         },
         {
             id              : '333',
+            gameId          : '1',
             event           : 'GameJoined',
             userName        : 'MikeCohn',
             opponentUserName: 'ArnarKari',
@@ -273,7 +277,7 @@ describe('when ending game', () => {
             event : 'GameDraw',
             timeStamp : '2015.12.04T19:45:21'
         }];
-        var actualEvents = tictactoeCommandHandler(given).execudeCommand(when);
+        var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 });
