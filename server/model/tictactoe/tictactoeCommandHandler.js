@@ -14,10 +14,9 @@ module.exports = function tictactoeCommandHandler(events) {
                 const column = e.move.y;
                 board[row][column] = e.move.symbol;
                 nextToMove = nextToMove === player1 ? player2 : player1;
-                console.log('e nextToMove', nextToMove);
             }
         },
-        'GameInitialized' : (e) => {
+        'GameCreated' : (e) => {
             {
                 player1 = e.userName;
                 nextToMove = player1;
@@ -36,12 +35,14 @@ module.exports = function tictactoeCommandHandler(events) {
     });
 
     const handlers = {
-        'InitalizeGame' : (cmd) => {
+        'CreateGame' : (cmd) => {
             {
                 return [{
                     id       : cmd.id,
-                    event    : 'GameInitialized',
+                    gameId   : cmd.gameId,
+                    event    : 'GameCreated',
                     userName : cmd.userName,
+                    name     : cmd.name,
                     timeStamp: cmd.timeStamp
                 }];
             }
@@ -58,6 +59,7 @@ module.exports = function tictactoeCommandHandler(events) {
                 }
                 return [{
                     id              : cmd.id,
+                    gameId          : cmd.gameId,
                     event           : 'GameJoined',
                     userName        : cmd.userName,
                     opponentUserName: gameCreatedEvent.userName,
@@ -154,8 +156,12 @@ module.exports = function tictactoeCommandHandler(events) {
     }
 
     return {
-        execudeCommand : (command) => {
-            return handlers[command.command](command)
+        executeCommand : (command) => {
+            var handler = handlers[command.command];
+            if(!handler){
+                throw new Error("No handler resolved for command " + JSON.stringify(command));
+            }
+            return handler(command);
         }
     }
 }
