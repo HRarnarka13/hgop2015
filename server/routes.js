@@ -14,6 +14,11 @@ module.exports = function(app, config) {
       res.json({'test' : 'test'});
   });
 
+  app.use('/api/gameHistory', require('./api/gameHistory')(eventStore).router);
+  app.use('/api/joinGame', require('./api/joinGame')(eventStore).router);
+  app.use('/api/move', require('./api/move')(eventStore).router);
+  app.use('/api/createGame', require('./api/createGame')(eventStore).router);
+
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
