@@ -19,7 +19,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
         var command = {
             id: "1234",
             gameId: "112",
-            comm: "CreateGame",
+            command: "CreateGame",
             userName: "ArnarKari",
             name: "TicTacToe",
             timeStamp: "2014-12-02T11:29:29"
@@ -41,12 +41,12 @@ describe('TEST ENV GET /api/gameHistory', function () {
                 res.body.should.be.instanceof(Array);
                 should(res.body).eql(
                     [{
-                        "id": "1234",
-                        "gameId": "112",
-                        "event": "GameCreated",
-                        "userName": "ArnarKari",
-                        "name": "TicTacToe",
-                        "timeStamp": "2014-12-02T11:29:29"
+                        id: "1234",
+                        gameId: "112",
+                        event: "GameCreated",
+                        userName: "ArnarKari",
+                        name: "TicTacToe",
+                        timeStamp: "2014-12-02T11:29:29"
                 }]);
                 done();
             });
