@@ -1,5 +1,5 @@
 'use strict';
-const tictactoeCommandHandler = require('./tictactoeCommandHandler');
+var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 describe('when initializing game', function() {
     var given, when, then;
 

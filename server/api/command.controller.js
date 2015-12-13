@@ -6,7 +6,7 @@ var app              = require('../app');
 
 module.exports = function (store) {
     return {
-        executeCommand: (req, res) => {
+        executeCommand: function(req, res) {
             try {
                 var context = boundedContext(store, tictactoeHandler);
                 console.log('context', context);
@@ -14,7 +14,7 @@ module.exports = function (store) {
                 context.handleCommand(req.body).then( function (result) {
                     console.log('result', result);
                     res.json(result);
-                }, (err) => {
+                }, function(err) {
                     console.log('err', err);
                     res.json(err);
                 });
