@@ -1,9 +1,9 @@
 'use strict';
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
-describe('when ending game', () => {
+describe('when ending game', function() {
     var given, when, then;
 
-    it('should end the game in a draw', () => {
+    it('should end the game in a draw', function() {
         // x o x
         // x x o
         // o x o
@@ -142,7 +142,7 @@ describe('when ending game', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should end the game in a draw 2', () => {
+    it('should end the game in a draw 2', function() {
         // o o x
         // x x o
         // o x

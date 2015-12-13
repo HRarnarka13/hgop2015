@@ -1,28 +1,28 @@
 'use strict';
 var _ = require('lodash');
 module.exports = function tictactoeCommandHandler(events) {
-    const gameCreatedEvent = events[0];
-    const board = [['','',''],['','',''],['','','']]
+    var gameCreatedEvent = events[0];
+    var board = [['','',''],['','',''],['','','']]
 
-    let nextToMove = '';
-    let player1 = '', player2 = '';
+    var nextToMove = '';
+    var player1 = '', player2 = '';
 
-    const eventHandlers = {
-        'MoveMade' : (e) => {
+    var eventHandlers = {
+        'MoveMade' : function(e) {
             {
-                const row = e.move.x;
-                const column = e.move.y;
+                var row = e.move.x;
+                var column = e.move.y;
                 board[row][column] = e.move.symbol;
                 nextToMove = nextToMove === player1 ? player2 : player1;
             }
         },
-        'GameCreated' : (e) => {
+        'GameCreated' : function(e) {
             {
                 player1 = e.userName;
                 nextToMove = player1;
             }
         },
-        'GameJoined' : (e) => {
+        'GameJoined' : function(e) {
             {
                 player2 = e.userName;
             }
@@ -30,12 +30,12 @@ module.exports = function tictactoeCommandHandler(events) {
     }
 
     // Act on previus events
-    _.each(events, (e) => {
+    _.each(events, function(e) {
         eventHandlers[e.event](e);
     });
 
-    const handlers = {
-        'CreateGame' : (cmd) => {
+    var handlers = {
+        'CreateGame' : function(cmd){
             {
                 return [{
                     id       : cmd.id,
@@ -47,7 +47,7 @@ module.exports = function tictactoeCommandHandler(events) {
                 }];
             }
         },
-        'JoinGame' : (cmd) => {
+        'JoinGame' : function(cmd){
             {
                 if (typeof events === 'undefined' || events.length <= 0) {
                     return [{
@@ -67,10 +67,10 @@ module.exports = function tictactoeCommandHandler(events) {
                 }];
             }
         },
-        'Move' : (cmd) => {
+        'Move' : function(cmd){
             {
-                const row = cmd.move.x;
-                const column = cmd.move.y;
+                var row = cmd.move.x;
+                var column = cmd.move.y;
                 if (nextToMove !== cmd.userName || board[row][column] !== '') {
                     return [{
                         id : cmd.id,
@@ -116,7 +116,7 @@ module.exports = function tictactoeCommandHandler(events) {
     }
 
     function gameState() {
-        let winner = null;
+        var winner = null;
         for (var i = 0; i < 3; i++) {
             // Check for winning in columns
             if (board[0][i] !== '' && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
@@ -156,7 +156,7 @@ module.exports = function tictactoeCommandHandler(events) {
     }
 
     return {
-        executeCommand : (command) => {
+        executeCommand : function(command) {
             var handler = handlers[command.command];
             if(!handler){
                 throw new Error("No handler resolved for command " + JSON.stringify(command));

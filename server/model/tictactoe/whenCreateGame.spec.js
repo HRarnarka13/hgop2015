@@ -1,9 +1,9 @@
 'use strict';
 const tictactoeCommandHandler = require('./tictactoeCommandHandler');
-describe('when initializing game', () => {
+describe('when initializing game', function() {
     var given, when, then;
 
-    it('should initialize game', () => {
+    it('should initialize game', function() {
         given = [];
         when = {
             id       : '1234',
@@ -27,7 +27,7 @@ describe('when initializing game', () => {
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should initialize a different gane', () => {
+    it('should initialize a different gane', function() {
         given = [];
         when = {
             id       : '0987',

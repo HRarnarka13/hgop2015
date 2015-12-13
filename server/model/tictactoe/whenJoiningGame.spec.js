@@ -1,9 +1,9 @@
 'use strict';
 const tictactoeCommandHandler = require('./tictactoeCommandHandler');
-describe('when joining game', () => {
+describe('when joining game',function(){
     var given, when, then;
 
-    it('should join game', () => {
+    it('should join game',function(){
         given = [{
             id       : '111',
             gameId   : 1,
@@ -32,7 +32,7 @@ describe('when joining game', () => {
         JSON.stringify(event).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should not join game because it dosen\'t exsist', () => {
+    it('should not join game because it dosen\'t exsist',function(){
         given = [];
         when = {
             id       : '222',

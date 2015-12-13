@@ -1,9 +1,9 @@
 'use strict';
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
-describe('when ending game', () => {
+describe('when ending game', function(){
     var given, when, then;
 
-    beforeEach(() => {
+    beforeEach(function(){
         given = [{
             id       : '333',
             event    : 'GameCreated',
@@ -85,7 +85,7 @@ describe('when ending game', () => {
         }];
     });
 
-    it('should win game, first column', () => {
+    it('should win game, first column', function(){
         when = {
             id        : '333',
             command   : 'Move',
@@ -120,7 +120,7 @@ describe('when ending game', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should win game, third row', () => {
+    it('should win game, third row', function(){
         when = {
             id        : '333',
             command   : 'Move',
@@ -155,7 +155,7 @@ describe('when ending game', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should win game, cornerwize \\', () => {
+    it('should win game, cornerwize \\', function(){
         when = {
             id        : '333',
             command   : 'Move',
@@ -190,7 +190,7 @@ describe('when ending game', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should win game, cornerwize /', () => {
+    it('should win game, cornerwize /', function(){
         // override the given state
         given = [{
             id       : '333',

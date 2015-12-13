@@ -1,9 +1,9 @@
 'use strict';
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
-describe('when making move', () => {
+describe('when making move', function() {
     var given, when, then;
 
-    beforeEach(() => {
+    beforeEach(function() {
         given = [{
             id       : '333',
             event    : 'GameCreated',
@@ -19,7 +19,7 @@ describe('when making move', () => {
         }];
     });
 
-    it('should make move', () => {
+    it('should make move', function() {
         when = {
             id        : '333',
             command   : 'Move',
@@ -48,7 +48,7 @@ describe('when making move', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should reject illegal move: marking already marked cell', () => {
+    it('should reject illegal move: marking already marked cell', function() {
         given.push({
             id       : '333',
             event    : 'MoveMade',
@@ -88,7 +88,7 @@ describe('when making move', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should reject illegal move: two moves in a row', () => {
+    it('should reject illegal move: two moves in a row', function() {
         given.push({
             id       : '333',
             event    : 'MoveMade',
@@ -128,7 +128,7 @@ describe('when making move', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should reject illegal move: marking already marked cell', () => {
+    it('should reject illegal move: marking already marked cell', function() {
         given.push({
             id       : '333',
             event    : 'MoveMade',
@@ -168,7 +168,7 @@ describe('when making move', () => {
         JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should make move for the other player', () => {
+    it('should make move for the other player', function() {
         given.push({
             id       : '333',
             event    : 'MoveMade',
