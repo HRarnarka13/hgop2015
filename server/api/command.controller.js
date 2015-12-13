@@ -4,7 +4,7 @@ var boundedContext   = require('../model/tictactoe/tictactoeBoundedContext');
 var tictactoeHandler = require('../model/tictactoe/tictactoeCommandHandler');
 var app              = require('../app');
 
-module.exports = (store) => {
+module.exports = function (store) {
     return {
         executeCommand: (req, res) => {
             try {
