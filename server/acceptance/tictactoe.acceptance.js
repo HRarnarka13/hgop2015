@@ -53,6 +53,22 @@ describe('TEST ENV GET /api/gameHistory', function () {
     });
 
     it('Should execute fluid API test', function (done) {
-        given(user("YourUser").createsGame("TicTacToe")).expect("GameCreated").withName("TicTacToe").isOk(done);
+        given(user("ArnarKari").createsGame("TicTacToe")).expect("GameCreated").withName("TicTacToe").isOk(done);
     });
+
+    it('Should play game until won or drawn', function (done) {
+        given(user("ArnarKari").createsGame("GameIdOne").named("TheFirstGame"))
+            .and(user("MikeCohn").joinsGame("GameIdOne"))
+            .and(user("ArnarKari").placesMove(0,0))
+            .and(user("MikeCohn").placesMove(0,1))
+            .and(user("ArnarKari").placesMove(0,2))
+            .and(user("MikeCohn").placesMove(2,0))
+            .and(user("ArnarKari").placesMove(1,1))
+            .and(user("MikeCohn").placesMove(1,2))
+            .and(user("ArnarKari").placesMove(1,0))
+            .and(user("MikeCohn").placesMove(2,2))
+            .and(user("ArnarKari").placesMove(2,1))
+        .expect("GameDraw").byUser("ArnarKari").isOk(done);
+    });
+
 });
