@@ -1,5 +1,4 @@
 'use strict';
-
 var should = require('should');
 var request = require('supertest');
 var acceptanceUrl = process.env.ACCEPTANCE_URL;
@@ -54,7 +53,6 @@ describe('TEST ENV GET /api/gameHistory', function () {
     });
 
     it('Should execute fluid API test', function (done) {
-        given(user("YourUser").createsGame("TicTacToe"))
-        .expect("GameCreated").withName("TicTacToe").isOk(done);
+        given(user("YourUser").createsGame("TicTacToe")).expect("GameCreated").withName("TicTacToe").isOk(done);
     });
 });
