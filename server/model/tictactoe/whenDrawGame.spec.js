@@ -29,7 +29,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 0,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:04'
         },
@@ -40,7 +39,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 1,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:07'
         },
@@ -51,7 +49,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 2,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:08'
         },
@@ -62,7 +59,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 0,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:10'
         },
@@ -73,7 +69,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 1,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:12'
         },
@@ -84,7 +79,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 2,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:16'
         },
@@ -95,7 +89,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 0,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:17'
         },
@@ -106,7 +99,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 2,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:20'
         }];
@@ -117,7 +109,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 1,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:21'
         };
@@ -129,13 +120,13 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 1,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:21'
         },
         {
             id : '333',
             event : 'GameDraw',
+            userName : 'ArnarKari',
             timeStamp : '2015.12.04T19:45:21'
         }];
         var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
@@ -168,7 +159,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 2,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:04'
         },
@@ -179,7 +169,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 0,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:07'
         },
@@ -190,7 +179,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 1,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:08'
         },
@@ -201,7 +189,6 @@ describe('when ending game', function() {
             move : {
                 x : 0,
                 y : 1,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:10'
         },
@@ -212,7 +199,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 1,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:12'
         },
@@ -223,7 +209,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 2,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:16'
         },
@@ -234,7 +219,6 @@ describe('when ending game', function() {
             move : {
                 x : 1,
                 y : 0,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:17'
         },
@@ -245,7 +229,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 0,
-                symbol : 'o',
             },
             timeStamp : '2015.12.04T19:45:20'
         }];
@@ -256,7 +239,6 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 2,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:21'
         };
@@ -268,13 +250,13 @@ describe('when ending game', function() {
             move : {
                 x : 2,
                 y : 2,
-                symbol : 'x',
             },
             timeStamp : '2015.12.04T19:45:21'
         },
         {
             id : '333',
             event : 'GameDraw',
+            userName : 'ArnarKari',
             timeStamp : '2015.12.04T19:45:21'
         }];
         var actualEvents = tictactoeCommandHandler(given).executeCommand(when);

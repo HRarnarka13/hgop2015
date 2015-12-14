@@ -12,7 +12,7 @@ module.exports = function tictactoeCommandHandler(events) {
             {
                 var row = e.move.x;
                 var column = e.move.y;
-                board[row][column] = e.move.symbol;
+                board[row][column] = e.userName === player1 ? 'x' : 'o';
                 nextToMove = nextToMove === player1 ? player2 : player1;
             }
         },
@@ -81,8 +81,8 @@ module.exports = function tictactoeCommandHandler(events) {
                     }]
                 }
 
-                board[row][column] = cmd.move.symbol;
-                nextToMove = nextToMove === player1 ? player2 : player2;
+                board[row][column] = cmd.userName === player1 ? 'x' : 'o';
+                nextToMove = nextToMove === player1 ? player2 : player1;
 
                 // Check if first row contains the same symbol
                 var state = gameState();
@@ -106,6 +106,7 @@ module.exports = function tictactoeCommandHandler(events) {
                     returnEvents.push({
                         id : cmd.id,
                         event : 'GameDraw',
+                        userName : cmd.userName,
                         timeStamp : cmd.timeStamp
                     });
                 }
