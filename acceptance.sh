@@ -1,6 +1,6 @@
 #!/bin/bash
-export ACCEPTANCE_URL=http://192.168.33.10:9000
+export ACCEPTANCE_URL=http://$1:$2
 
-ssh vagrant@192.168.33.10 'bash -s' < restart-docker.sh
+ssh vagrant@$1 'bash -s' < restart-docker.sh
 echo "Done"
 grunt mochaTest:acceptance
