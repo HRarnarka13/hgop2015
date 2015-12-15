@@ -12,3 +12,4 @@ acceptance-tests
 # Mac Files
 .DS_Store
 load-tests
+test-reports/
