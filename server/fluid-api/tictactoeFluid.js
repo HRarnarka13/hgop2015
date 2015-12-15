@@ -31,7 +31,7 @@ function given(userApi) {
         isOk: function (done) {
             // console.log('OK:', commands);
             function executeCommand(cmd, doneWithCommands){
-                console.log('cmd', cmd);
+                //console.log('cmd', cmd);
                 var url = '/api/' + cmd.command.charAt(0).toLowerCase() + cmd.command.slice(1);
                 var req = request(acceptanceUrl);
                 req
@@ -41,7 +41,7 @@ function given(userApi) {
                     .expect(200)
                     .end(function (err, res) {
                         if (err) {
-                            console.log('ERR', err);
+                            // console.log('ERR', err);
                             doneWithCommands();
                         }
                         //res.body.should.be.instanceof(Array);
@@ -66,9 +66,13 @@ function given(userApi) {
                         }
                         //console.log('res.body', res.body);
                         res.body.should.be.instanceof(Array);
-                        // console.log('history:', res.body);
-                        should(res.body[res.body.length - 1].event).eql(
-                            _expectedEvent.event);
+                        //console.log('history:', res.body);
+                        res.body.should.matchAny(function(value) { value.event.should.be.eql(_expectedEvent.event) });
+                        //res.body.should.matchAny(function(value) { value.event.should.be.eql(_expectedEvent.event) });
+
+                        // res.body.should.containEql({ event : _expectedEvent.event });
+                        // should(res.body[res.body.length - 1].event).eql(
+                        //     _expectedEvent.event);
                         users = {};
                         commands = [];
                         done();
