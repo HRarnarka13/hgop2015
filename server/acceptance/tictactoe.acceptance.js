@@ -56,7 +56,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
         given(user("ArnarKari").createsGame("TicTacToe")).expect("GameCreated").withName("TicTacToe").isOk(done);
     });
 
-    it('Should play game until won or drawn', function (done) {
+    it('Should play game until draw', function (done) {
         given(user("ArnarKari").createsGame("GameIdOne").named("TheFirstGame"))
             .and(user("MikeCohn").joinsGame("GameIdOne"))
             .and(user("ArnarKari").placesMove(0,0))
@@ -70,5 +70,18 @@ describe('TEST ENV GET /api/gameHistory', function () {
             .and(user("ArnarKari").placesMove(2,1))
         .expect("GameDraw").byUser("ArnarKari").isOk(done);
     });
+
+    it('Should play game until won', function (done) {
+        given(user("ArnarKari").createsGame("winner").named("TheFirstGame"))
+            .and(user("MikeCohn").joinsGame("winner"))
+            .and(user("ArnarKari").placesMove(0,0))
+            .and(user("MikeCohn").placesMove(1,1))
+            .and(user("ArnarKari").placesMove(0,2))
+            .and(user("MikeCohn").placesMove(2,1))
+            .and(user("ArnarKari").placesMove(0,1))
+        .expect("GameWon").byUser("ArnarKari").isOk(done);
+    });
+
+
 
 });
