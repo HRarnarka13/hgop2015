@@ -13,4 +13,4 @@ echo 'Pulling changes from docker.'
 docker pull $1:$2
 
 echo 'Running the new version in docker.'
-docker run -p 9000:8080 -d -e "NODE_ENV=production" $1
+docker run -p 9000:8080 -d -e "NODE_ENV=production" $1:$2
