@@ -78,7 +78,7 @@ module.exports = function tictactoeCommandHandler(events) {
                         userName : cmd.userName,
                         move : cmd.move,
                         timeStamp : cmd.timeStamp
-                    }]
+                    }];
                 }
 
                 board[row][column] = cmd.userName === player1 ? 'x' : 'o';
