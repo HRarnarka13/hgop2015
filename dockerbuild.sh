@@ -44,8 +44,8 @@ cp ./Dockerfile ./dist/
 cd dist
 npm install --production
 
-echo Building docker image
-docker build -t $1:$GIT_COMMIT
+echo Building docker image $1
+docker build -t "$1:$GIT_COMMIT" .
 rc=$?
 if [[ $rc != 0 ]]; then
     echo 'Docker build failed, with code:' $rc
@@ -54,7 +54,7 @@ fi
 
 # Push to docker
 echo Pushing docker image
-docker push $1:$GIT_COMMIT
+docker push "$1:$GIT_COMMIT"
 rc=$?
 if [[ $rc != 0 ]]; then
     echo 'Docker push failed, with code:' $rc
