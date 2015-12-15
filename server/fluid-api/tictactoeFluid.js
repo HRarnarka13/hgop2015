@@ -7,37 +7,32 @@ var uuid = require('uuid');
 var acceptanceUrl = process.env.ACCEPTANCE_URL;
 
 var users = {};
-var commands = [];
 
 function given(userApi) {
-    commands = [];
+    var commands = [];
     commands.push(_.clone(userApi._command));
-    var _expectedEvents = [{
+    var _expectedEvent = {
         id: userApi._command.id,
         gameId: userApi._command.gameId,
         event: "EventName",
         userName: userApi._command.userName,
         name: userApi._command.name,
         timeStamp: userApi._command.timeStamp
-    }];
+    };
     var expectApi = {
         withName: function (gameName) {
-            _expectedEvents[0].name = gameName;
+            _expectedEvent.name = gameName;
             return expectApi;
         },
         expect: function (eventName) {
-            _expectedEvents[0].event = eventName;
+            _expectedEvent.event = eventName;
             return expectApi;
         },
         isOk: function (done) {
-            //console.log('commands.length',commands.length);
             // console.log('OK:', commands);
-            async.each(commands, function (cmd, callback) {
-                //console.log('Current command:', cmd);
-
+            function executeCommand(cmd, doneWithCommands){
+                console.log('cmd', cmd);
                 var url = '/api/' + cmd.command.charAt(0).toLowerCase() + cmd.command.slice(1);
-                //console.log('url', url);
-
                 var req = request(acceptanceUrl);
                 req
                     .post(url)
@@ -46,15 +41,23 @@ function given(userApi) {
                     .expect(200)
                     .end(function (err, res) {
                         if (err) {
-                            return done(err);
+                            console.log('ERR', err);
+                            doneWithCommands();
                         }
-                        //console.log('response from current:', res.body);
-                        // res.body.should.be.instanceof(Array);
-                        callback();
+                        //res.body.should.be.instanceof(Array);
+                        if (commands.length > 0) {
+                            executeCommand(commands.shift(), doneWithCommands);
+                        } else {
+                            users = {};
+                            commands = [];
+                            doneWithCommands();
+                        }
                     });
-            }, function () {
+            }
+
+            executeCommand(commands.shift(), function () {
                 request(acceptanceUrl)
-                    .get('/api/gameHistory/' + commands[0].gameId)
+                    .get('/api/gameHistory/' + _expectedEvent.gameId)
                     .expect(200)
                     .expect('Content-Type', /json/)
                     .end(function (err, res) {
@@ -63,26 +66,22 @@ function given(userApi) {
                         }
                         //console.log('res.body', res.body);
                         res.body.should.be.instanceof(Array);
-                        //console.log('history:', res.body);
+                        // console.log('history:', res.body);
                         should(res.body[res.body.length - 1].event).eql(
-                            _expectedEvents[0].event);
-                        //should(res.body[res.body.length - 1].id).eql(
-                        //     _expectedEvents[0].id);
-                        should(res.body[res.body.length - 1].timeStamp).eql(
-                            _expectedEvents[0].timeStamp);
-                        done();
+                            _expectedEvent.event);
                         users = {};
                         commands = [];
+                        done();
                     });
             });
             return expectApi;
         },
         and : function (api) {
             commands.push(_.clone(api._command));
-            _expectedEvents[0].id = api._command.id;
-            _expectedEvents[0].gameId = api._command.gameId;
-            _expectedEvents[0].userName = api._command.userName;
-            _expectedEvents[0].name = api._command.name;
+            _expectedEvent.id = api._command.id;
+            _expectedEvent.gameId = api._command.gameId;
+            _expectedEvent.userName = api._command.userName;
+            _expectedEvent.name = api._command.name;
 
             return expectApi;
         },
