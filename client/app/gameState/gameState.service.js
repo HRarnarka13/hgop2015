@@ -16,9 +16,11 @@ angular.module('tictactoeApp')
                         gameState.name = event.name;
                         gameState.gameId = event.gameId;
                         gameState.creatingUser = event.userName;
+                        gameState.symbol = 'X';
                     },
                     'GameJoined': function (event, gameState) {
                         gameState.joiningUser = event.userName;
+                        gameState.symbol = 'O';
                     },
                     'Move': function (event, gameState) {
                         var x = event.move.x, y = event.move.y;
