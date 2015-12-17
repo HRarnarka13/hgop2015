@@ -42,7 +42,7 @@ expect(gameState.creatingUser).toBe('ArnarKari');
 it('Should add moves 0,1 to game board', function () {
 
     gameState.mutate([{
-        event: 'Move',
+        event: 'MoveMade',
         userName: 'ArnarKari',
         name: 'TheFirstGame',
         timeStamp: '2014-12-02T11:29:29',
@@ -61,7 +61,7 @@ expect(gameState.board[0][1]).toBe('X');
 it('Should add move 2,2 to board.', function () {
 
     gameState.mutate([{
-        event: 'Move',
+        event: 'MoveMade',
         userName: 'ArnarKari',
         name: 'TheFirstGame',
         timeStamp: '2014-12-02T11:29:29',
@@ -80,7 +80,7 @@ expect(gameState.board[2][2]).toBe('X');
 it('Should mark nextTurn as opposite from last event.', function () {
     gameState.me = {side: 'O'};
     gameState.mutate([{
-        event: 'Move',
+        event: 'MoveMade',
         userName: 'ArnarKari',
         name: 'TheFirstGame',
         timeStamp: '2014-12-02T11:29:29',

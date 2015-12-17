@@ -22,7 +22,8 @@ angular.module('tictactoeApp')
                         gameState.joiningUser = event.userName;
                         gameState.symbol = 'O';
                     },
-                    'Move': function (event, gameState) {
+                    'MoveMade': function (event, gameState) {
+                        console.log('event ', event);
                         var x = event.move.x, y = event.move.y;
                         gameState.board[x][y] = event.move.symbol;
                         gameState.nextTurn = event.move.symbol === 'X' ? 'O' : 'X';

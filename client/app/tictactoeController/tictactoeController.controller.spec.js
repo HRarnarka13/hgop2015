@@ -79,7 +79,7 @@ describe('Controller: TictactoeControllerCtrl', function () {
             }
         }).respond([
             {
-                event: 'Move',
+                event: 'MoveMade',
                 userName: 'ArnarKari',
                 timeStamp: '2014-12-02T11:29:29',
                 move: {
@@ -120,7 +120,7 @@ describe('Controller: TictactoeControllerCtrl', function () {
             }
         }).respond([
             {
-                event: 'Move',
+                event: 'MoveMade',
                 userName: 'ArnarKari',
                 timeStamp: '2014-12-02T11:29:29',
                 move: {

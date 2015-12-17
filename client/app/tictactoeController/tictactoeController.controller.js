@@ -39,6 +39,7 @@ angular.module('tictactoeApp')
     }
 
     $scope.myTurn = function () {
+        //console.log('My turn $scope.gameState.nextTurn', $scope.gameState.nextTurn);
         return mySide() === $scope.gameState.nextTurn;
     };
 
