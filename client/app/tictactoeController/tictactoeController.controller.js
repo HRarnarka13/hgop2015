@@ -54,7 +54,7 @@ angular.module('tictactoeApp')
             move: {
                 x : coords.x,
                 y : coords.y,
-                symbol : $scope.gameState.symbol,
+                symbol : $scope.gameState.nextTurn,
             }
         }
     ));
