@@ -26,7 +26,8 @@ describe('when making move', function() {
             userName  : 'ArnarKari',
             move : {
                 x      : 0,
-                y      : 1
+                y      : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         };
@@ -38,6 +39,7 @@ describe('when making move', function() {
             move : {
                 x : 0,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
@@ -54,6 +56,7 @@ describe('when making move', function() {
             move : {
                 x      : 0,
                 y      : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         });
@@ -65,6 +68,7 @@ describe('when making move', function() {
             move : {
                 x : 0,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         };
@@ -76,6 +80,7 @@ describe('when making move', function() {
             move : {
                 x : 0,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
@@ -91,6 +96,7 @@ describe('when making move', function() {
             move : {
                 x      : 0,
                 y      : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         });
@@ -102,6 +108,7 @@ describe('when making move', function() {
             move : {
                 x : 1,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         };
@@ -113,6 +120,7 @@ describe('when making move', function() {
             move : {
                 x : 1,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
@@ -128,6 +136,7 @@ describe('when making move', function() {
             move : {
                 x      : 0,
                 y      : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         });
@@ -139,6 +148,7 @@ describe('when making move', function() {
             move : {
                 x : 0,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         };
@@ -150,6 +160,7 @@ describe('when making move', function() {
             move : {
                 x : 0,
                 y : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
@@ -165,6 +176,7 @@ describe('when making move', function() {
             move : {
                 x      : 0,
                 y      : 1,
+                symbol : 'X',
             },
             timeStamp : '2015.12.04T19:45:04'
         });
@@ -176,6 +188,7 @@ describe('when making move', function() {
             move : {
                 x : 1,
                 y : 1,
+                symbol : 'O',
             },
             timeStamp : '2015.12.04T19:45:04'
         };
@@ -186,6 +199,7 @@ describe('when making move', function() {
             move : {
                 x : 1,
                 y : 1,
+                symbol : 'O',
             },
             timeStamp : '2015.12.04T19:45:04'
         }];
