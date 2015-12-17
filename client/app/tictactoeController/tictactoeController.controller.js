@@ -54,8 +54,8 @@ angular.module('tictactoeApp')
             userName: $scope.me,
             timeStamp: '2014-12-02T11:29:29',
             move: {
-                x : coords.x,
-                y : coords.y,
+                x : coords[0],
+                y : coords[1],
                 symbol : $scope.gameState.nextTurn,
             }
         }
