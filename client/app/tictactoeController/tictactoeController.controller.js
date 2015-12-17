@@ -48,16 +48,26 @@ angular.module('tictactoeApp')
         }
         console.log('coords', coords);
         console.log('$scope.gameState.nextTurn', $scope.gameState.nextTurn);
+        var _move = {};
+        if (coords instanceof Array) {
+            _move = {
+                x : coords[0],
+                y : coords[1],
+                symbol : $scope.gameState.nextTurn,
+            }
+        } else {
+            _move = {
+                x : coords.x,
+                y : coords.y,
+                symbol : $scope.gameState.nextTurn,
+            }
+        }
         thenHandleEvents($http.post('/api/move/', {
             gameId: $scope.gameState.gameId,
             command: 'Move',
             userName: $scope.me,
             timeStamp: '2014-12-02T11:29:29',
-            move: {
-                x : coords[0],
-                y : coords[1],
-                symbol : $scope.gameState.nextTurn,
-            }
+            move: _move,
         }
     ));
 };
