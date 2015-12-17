@@ -54,13 +54,13 @@ angular.module('tictactoeApp')
                 x : coords[0],
                 y : coords[1],
                 symbol : $scope.gameState.nextTurn,
-            }
+            };
         } else {
             _move = {
                 x : coords.x,
                 y : coords.y,
                 symbol : $scope.gameState.nextTurn,
-            }
+            };
         }
         thenHandleEvents($http.post('/api/move/', {
             gameId: $scope.gameState.gameId,
