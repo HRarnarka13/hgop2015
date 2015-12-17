@@ -43,3 +43,46 @@ Við erum með allan kóðan okkar bæði inná okkar vél og virtual vél sem v
 **How does the "deploy any version, anywhere" build feature work? Hint: Track `GIT_COMMIT`**
 
 Við getum núna bara áhveðið hvaða version við viljum að fari í production með því að senda með `GIT_COMMIT`-ið með þegar við buildum docker image og þá töggum við það með `GIT_COMMIT` og þá getum við nálgast það version.
+
+
+## Jenkins scripts
+### Commit stage
+```
+export DISPLAY=:0
+export PATH=/sbin:/usr/sbin:/bin:/usr/local/bin
+npm install
+bower install
+./dockerbuild.sh arnkari93/tictactoe
+```
+
+### Deploy test stage
+```
+export GIT_UPSTREAM_HASH=$(<dist/githash.txt)
+env
+./deploy.sh 192.168.33.10 arnkari93/tictactoe $GIT_UPSTREAM_HASH 9000
+```
+
+### Acceptance stage
+I made a script for this but it restarts the docker container so I only used it locally
+```
+export PATH=/sbin:/usr/sbin:/bin:/usr/local/bin
+npm install
+export ACCEPTANCE_URL=http://192.168.33.10:9000
+grunt mochaTest:acceptance
+```
+
+### Capacity stage
+I made a script for this but it restarts the docker container so I only used it locally
+```
+export PATH=/sbin:/usr/sbin:/bin:/usr/local/bin
+npm install
+export ACCEPTANCE_URL=http://192.168.33.10:9000
+grunt mochaTest:load
+```
+
+### Deploy Production stage
+```
+export GIT_UPSTREAM_HASH=$(<dist/githash.txt)
+env
+./deploy.sh 192.168.33.10 arnkari93/tictactoe $GIT_UPSTREAM_HASH 9000
+```
